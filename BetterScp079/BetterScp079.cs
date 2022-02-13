@@ -10,9 +10,9 @@ namespace BetterScp079
 
         public override string Developer => "Tsukuyomi#2884";
 
-        public override Version Version => new(1, 0, 0);
+        public override Version Version => new(1, 1, 0);
 
-        public override Version NeededQurreVersion => new(1, 11, 13);
+        public override Version NeededQurreVersion => new(1, 11, 13, 1);
 
         public static new Config Config { get; private set; }
 
