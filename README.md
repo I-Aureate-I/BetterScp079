@@ -17,21 +17,22 @@ CommandLevels:
   Blackout:
   - 2
   - 3
-  - 20
   - 30
+  - 40
   - 50
   Teslas:
   - 2
-  - 25
+  - 40
 # Can SCP-079 activate Tesla in a room where the blackout by his?
 AllowTeslaInBlackout: false
-ChangeCameraPowerCost: 0
-SpeakerPowerCost: 0
+# Instant trigger of the tesla in Scp079InteractTeslaEvent?
+InteractTeslaInstant: true
 InteractDoorPowerCost: 5
+LockDoorPowerCost: 5
+SpeakerPowerCost: 10
+ChangeCameraPowerCost: 10
 InteractLiftPowerCost: 10
-LockDoorPowerCost: 10
-ElevatorTeleportPowerCost: 10
-InteractTeslaPowerCost: 15
-LockdownPowerCost: 25
-
+ElevatorTeleportPowerCost: 30
+InteractTeslaPowerCost: 45
+LockdownPowerCost: 60
 ```
