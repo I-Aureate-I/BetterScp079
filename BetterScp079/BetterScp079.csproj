@@ -67,7 +67,6 @@
   <ItemGroup>
     <Compile Include="BetterScp079.cs" />
     <Compile Include="EventHandlers.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Scp079Command.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

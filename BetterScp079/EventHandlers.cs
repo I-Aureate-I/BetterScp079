@@ -1,6 +1,11 @@
-﻿using Qurre.API.Events;
-using Qurre.API.Objects;
+﻿using Footprinting;
+using InventorySystem.Items.Pickups;
+using Mirror;
 using Qurre.API.Controllers;
+using Qurre.API.Controllers.Items;
+using Qurre.API.Events;
+using Qurre.API.Objects;
+using UnityEngine;
 
 namespace BetterScp079
 {
@@ -34,6 +39,68 @@ namespace BetterScp079
         { 
             ev.PowerCost = BetterScp079.Config.InteractTeslaPowerCost;
             ev.Instant = BetterScp079.Config.InteractTeslaInstant;
+        }
+
+        internal static void ThrowGrenade(GrenadeFlash grenade)
+        {
+            grenade.FuseTime = 1f;
+            grenade.Base._destroyTime = Time.timeSinceLevelLoad + grenade.Base._postThrownAnimationTime;
+            grenade.Base._alreadyFired = true;
+            Respawning.GameplayTickets.Singleton.HandleItemTickets(grenade.Base);
+            var thrownProjectile = Object.Instantiate(grenade.Base.Projectile, grenade.Owner.Scp079Controller.Camera.GameObject.transform.position, grenade.Owner.Scp079Controller.Camera.GameObject.transform.rotation);
+
+            PickupSyncInfo pickupSyncInfo = new()
+            {
+                ItemId = grenade.Base.ItemTypeId,
+                Locked = !grenade.Base._repickupable,
+                Serial = grenade.Base.ItemSerial,
+                Weight = grenade.Base.Weight,
+                Position = thrownProjectile.transform.position,
+                Rotation = new LowPrecisionQuaternion(thrownProjectile.transform.rotation)
+            };
+
+            thrownProjectile.NetworkInfo = pickupSyncInfo;
+            thrownProjectile.PreviousOwner = new Footprint(grenade.Base.Owner);
+            NetworkServer.Spawn(thrownProjectile.gameObject, (NetworkConnection)null);
+            thrownProjectile.InfoReceived(default, pickupSyncInfo);
+
+            if (thrownProjectile.TryGetComponent(out Rigidbody rb))
+            {
+                grenade.Base.PropelBody(rb, grenade.Base.WeakThrowSettings.StartTorque, Vector3.one, grenade.Base.WeakThrowSettings.StartVelocity, grenade.Base.WeakThrowSettings.UpwardsFactor);
+            }
+
+            thrownProjectile.ServerActivate();
+        }
+
+        internal static void ThrowGrenade(GrenadeFrag grenade)
+        {
+            grenade.FuseTime = 1f;
+            grenade.Base._destroyTime = Time.timeSinceLevelLoad + grenade.Base._postThrownAnimationTime;
+            grenade.Base._alreadyFired = true;
+            Respawning.GameplayTickets.Singleton.HandleItemTickets(grenade.Base);
+            var thrownProjectile = Object.Instantiate(grenade.Base.Projectile, grenade.Owner.Scp079Controller.Camera.GameObject.transform.position, grenade.Owner.Scp079Controller.Camera.GameObject.transform.rotation);
+
+            PickupSyncInfo pickupSyncInfo = new()
+            {
+                ItemId = grenade.Base.ItemTypeId,
+                Locked = !grenade.Base._repickupable,
+                Serial = grenade.Base.ItemSerial,
+                Weight = grenade.Base.Weight,
+                Position = thrownProjectile.transform.position,
+                Rotation = new LowPrecisionQuaternion(thrownProjectile.transform.rotation)
+            };
+
+            thrownProjectile.NetworkInfo = pickupSyncInfo;
+            thrownProjectile.PreviousOwner = new Footprint(grenade.Base.Owner);
+            NetworkServer.Spawn(thrownProjectile.gameObject, (NetworkConnection)null);
+            thrownProjectile.InfoReceived(default, pickupSyncInfo);
+
+            if (thrownProjectile.TryGetComponent(out Rigidbody rb))
+            {
+                grenade.Base.PropelBody(rb, grenade.Base.WeakThrowSettings.StartTorque, Vector3.one, grenade.Base.WeakThrowSettings.StartVelocity, grenade.Base.WeakThrowSettings.UpwardsFactor);
+            }
+
+            thrownProjectile.ServerActivate();
         }
     }
 }

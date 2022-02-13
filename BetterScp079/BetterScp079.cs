@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Qurre;
+﻿using Qurre;
+using System;
 using Events = Qurre.Events.Scp079;
 
 namespace BetterScp079
