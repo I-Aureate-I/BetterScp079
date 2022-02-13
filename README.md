@@ -1,5 +1,5 @@
 <a href="https://github.com/I-Tsukuyomi-I/BetterScp079/releases/latest">
-  <img src="https://img.shields.io/github/downloads/I-Tsukuyomi-I/BetterScp079/total.svg" />
+  <img src="https://img.shields.io/github/downloads/I-Tsukuyomi-I/BetterScp079/total" />
 </a>
 
 # **BetterScp079**
