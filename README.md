@@ -1,5 +1,5 @@
 # **BetterScp079**
-**Plugin for improving SCP-079.**
+**Plugin improving SCP-079.**
 ## **Configs**
 ```yaml
 # Plugin Name
