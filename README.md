@@ -1,9 +1,6 @@
 <a href="https://github.com/I-Tsukuyomi-I/BetterScp079/releases/latest">
   <img src="https://img.shields.io/github/downloads/I-Tsukuyomi-I/BetterScp079/total.svg" />
 </a>
-<a href="https://github.com/I-Tsukuyomi-I/BetterScp079/commits/main">
-  <img src="https://img.shields.io/github/commits-since/I-Tsukuyomi-I/BetterScp079/latest?include_prereleases" />
-</a>
 
 # **BetterScp079**
 **Plugin improving SCP-079.**
